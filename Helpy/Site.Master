@@ -1,0 +1,145 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Helpy.Site" %>
+<%@ Import Namespace="Helpy.Code" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title><%=Constants.PROJECT_NAME %> | Welcome</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="CSS/style.css" rel="stylesheet"/>
+    <script src='<%=ResolveClientUrl("~/Scripts/jquery-1.9.1.min.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/moment.min.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap.min.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/bootstrap-datetimepicker.min.js")%>'></script>
+    <script src='<%=ResolveClientUrl("~/Scripts/script.js")%>'></script>
+    <script>
+        $(function () {
+            <%  
+                if (!string.IsNullOrEmpty(_fromLoginError))
+                    Response.Write("$(\'#loginModal\').modal(\'show\');" +
+                                  $"$('#login_fail_details').html('{_fromLoginError}');");
+                if (!string.IsNullOrEmpty(_fromRegError))
+                    Response.Write("$(\'#registerModal\').modal(\'show\');" +
+                                  $"$('#register_fail_details').html('{_fromRegError}');");
+                _fromLoginError = null;
+                _fromRegError = null;
+            %>
+        })
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <nav class="navbar navbar-static-top navbar-dark bg-inverse" style="background-color: #373a3c; margin-bottom: 0">
+        <a class="navbar-brand pull-left" href='<%=ResolveClientUrl("~/home.aspx")%>'><%=Constants.PROJECT_NAME %> </a>
+        <ul class="nav pull-right">
+            <li class="nav-item">
+                <%
+                    Response.Write(
+                        string.IsNullOrEmpty(_name)
+                            ? "<a class=\"nav-link login-button\" href=\"#\" id=\"login-link\" data-toggle=\"modal\" data-target=\"#loginModal\">Login</a>"
+                            : $"<span class='hello_user'>Hey {_name} </span>");
+                    btnLogout.Visible = !string.IsNullOrEmpty(_name);
+
+                 %>
+                <asp:LinkButton runat="server" ID="btnLogout" OnClick="OnLogOut" CssClass="nav-link login-button">LogOut</asp:LinkButton>
+            </li>
+          </ul>
+    </nav>
+    <div>
+        <div id="loginModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><%=Constants.PROJECT_NAME %> </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group top-margin ">
+                            <span class="input-group-addon">Username</span>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtName"></asp:TextBox>
+                        </div>
+                        <div class="input-group top-margin">
+                            <span class="input-group-addon" style="padding-left: 16px">Password   </span>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtPass" TextMode="Password"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="left">
+                            <asp:Literal runat="server" ID="lblLoginResult"></asp:Literal>
+                            <div class="alert alert-warning" id="login_fail_details"></div>
+                        </div>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-dismiss="modal" data-target="#registerModal">Register</button>
+                        <asp:Button runat="server" ID="btnLogin" CssClass="btn btn-primary btn-lg" OnClick="btnLogin_OnClick" Text="Login"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="registerModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Register to <%=Constants.PROJECT_NAME %></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group top-margin ">
+                            <span class="input-group-addon">Username</span>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtRegName"></asp:TextBox>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group top-margin">
+                                    <span class="input-group-addon" style="padding-left: 16px">Password</span>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtRegPass1" TextMode="Password"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group top-margin">
+                                    <span class="input-group-addon">Password x2</span>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtRegPass2" TextMode="Password"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group top-margin" style="padding-top: 10px">
+                            <span class="input-group-addon">Full Name</span>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtRegFullName"></asp:TextBox>
+                        </div>
+                        <div class="row top-margin">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon" >Email</span>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtRegMail" TextMode="Email"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon" >Phone</span>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtRegPhone" TextMode="Phone"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group top-margin">
+                            <span class="input-group-addon" >Address</span>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="txtRegAddress"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="left">
+                            <asp:Literal runat="server" ID="lblRegResult"></asp:Literal>
+                            <div class="alert alert-warning" id="register_fail_details"></div>
+                        </div>
+                        <asp:Button runat="server" ID="btnRegister" CssClass="btn btn-primary" OnClick="btnRegister_OnClick" Text="Register"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

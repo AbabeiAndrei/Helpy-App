@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Helpy.Classes.Donor">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAICAAAQAKAAAAAAAAAAAAygAAAAAAADAAAAIAAAAAg=</HashCode>
+      <FileName>Classes\Donor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helpy.Classes.Child">
+    <Position X="3" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgICAAAAgAAAAKAAEFAAEAyAAAAIUAACAgAAAAAAAAA=</HashCode>
+      <FileName>Classes\Child.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helpy.Classes.User">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAICAAAAAAQAAIAAAAAAEAQAAAAAAAACAAAAIQAAAIg=</HashCode>
+      <FileName>Classes\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helpy.Model.Connector">
+    <Position X="11.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAIACAAEAAAAAIBABAAAQEAAAAgAAAAQAAAAAg=</HashCode>
+      <FileName>Model\Connector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Helpy.Code.Utils">
+    <Position X="11.5" Y="5.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Helpy.Code.Utils.Crypto">
+        <TypeIdentifier>
+          <NewMemberFileName>Code\Utils.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Code\Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

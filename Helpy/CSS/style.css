@@ -1,0 +1,38 @@
+﻿.nav>li>a:focus, 
+.nav>li>a:hover.login-button:hover{
+    background-color: transparent;
+    color: white;
+}
+
+.list-causes {
+    margin: 5px 0;
+    padding: 5px
+}
+
+.no-resizable {
+    resize: none;
+}
+.right {
+    float: right
+}
+
+.left {
+    float: left
+}
+
+.donate_child_click {
+    padding: 8px 26px;
+}
+
+.top-margin {
+    margin-top: 10px;
+}
+
+.hello_user {
+    padding: 15px 20px 0 0;
+    color: white
+}
+
+.full-widht {
+    width: 100%;
+}
